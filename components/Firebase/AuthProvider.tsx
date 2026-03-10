@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from "react";
-import { GoogleAuthProvider, onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from "firebase/auth";
 import auth from "./firebase.config";
 
 export const AuthContext = createContext();
@@ -19,6 +19,28 @@ const AuthProvider = ({ children }) => {
       throw error;
     }
   };
+
+  const handleRegister = async ( name,email , pass) => {
+    try {
+      setLoading(true)
+      const result = await createUserWithEmailAndPassword(auth , email , pass)
+       await updateProfile(result.user , {
+        displayName: name
+       })
+       return result.user
+    } catch (error) {
+      throw error
+    }
+  }
+
+  const handleLogin = (email ,pass) => {
+    try {
+      setLoading(true)
+      return signInWithEmailAndPassword(auth , email , pass)
+    } catch (error) {
+      throw error
+    }
+  }
 
   // Log Out
   const logOut = async () => {
@@ -42,8 +64,18 @@ const AuthProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
+  const data = {
+    user ,
+    loading ,
+    googleSignIn,
+    setUser,
+    logOut,
+    handleLogin , 
+    handleRegister
+  }
+
   return (
-    <AuthContext.Provider value={{ user, loading, googleSignIn, logOut, setUser }}>
+    <AuthContext.Provider value={data}>
       {children}
     </AuthContext.Provider>
   );

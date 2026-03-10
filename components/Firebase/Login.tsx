@@ -1,112 +1,112 @@
 import React, { useContext, useState } from "react";
-import { View, Text, TouchableOpacity, ActivityIndicator, TextInput, Image, Alert } from "react-native";
-import { AuthContext } from "./AuthProvider";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Alert,
+  Image,
+  ActivityIndicator,
+} from "react-native";
 import { useRouter } from "expo-router";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { AuthContext } from "./AuthProvider";
 
 const Login = () => {
-  const { googleSignIn, user, loading , logOut  } = useContext(AuthContext);
+  const { googleSignIn, loading, handleLogin } = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
-  // Email/Password Login
-  const handlePass = () => {
-    console.log("Email:", email);
-    console.log("Password:", password);
-    alert("Email login not implemented yet");
-  };
-// Google Sign In
-  const handleLogin = async () => {
+
+  const handleEmailLogin = async () => {
     try {
-      await googleSignIn();
-      alert("Google Sign In Successful!");
-      router.replace("/add-todo")
+      await handleLogin(email, password);
+      Alert.alert("Success", "Logged In Successfully");
+      router.replace("/add-todo");
     } catch (error) {
-      alert("Sign In Failed: " + error.message);
+      Alert.alert("Login Failed", error.message);
     }
   };
-  const handleUserLogout = async () => {
+
+  const handleGoogle = async () => {
     try {
-      await logOut();
-      Alert.alert("Logout Successful!");
-      router.replace("/")
+      await googleSignIn();
+      router.replace("/add-todo");
     } catch (error) {
-      Alert.alert("Sign Out Failed: " + error.message);
+      Alert.alert("Sign In Failed", error.message);
     }
   };
 
   if (loading) {
     return (
       <View className="flex-1 justify-center items-center bg-white">
-        <ActivityIndicator size="large" color="#1E40AF" />
-      </View>
-    );
-  }
-
-  if (user) {
-    return (
-      <View className="flex-1 justify-center items-center bg-white px-6">
-        {user.photoURL && (
-          <Image
-            source={{ uri: user.photoURL }}
-            className="w-24 h-24 rounded-full mb-4"
-          />
-        )}
-        <Text className="text-2xl font-bold mb-2">Welcome, {user.displayName}</Text>
-        <Text className="text-gray-500 mb-6">{user.email}</Text>
-        <TouchableOpacity
-          className="bg-red-500 px-6 py-3 rounded-lg"
-          onPress={() =>  handleUserLogout()}
-        >
-          <Text className="text-white font-bold text-center">Logout</Text>
-        </TouchableOpacity>
+        <ActivityIndicator size="large" color="#000" />
       </View>
     );
   }
 
   return (
-    <View className="flex-1 justify-center items-center bg-gradient-to-b from-blue-100 to-white px-6">
-      <Text className="text-4xl font-bold mb-10 text-blue-900">Welcome Back</Text>
+    <View className="flex-1 justify-center bg-white px-6">
 
-      {/* Email Login */}
-      <View className="w-full mb-6">
+      <Text className="text-4xl font-bold text-black mb-10 text-center">
+        Sign In - Native ToDo
+      </Text>
+
+      {/* Email */}
+      <View className="flex-row items-center border border-black rounded-lg mb-4 px-3">
+        <Ionicons name="mail-outline" size={20} color="black" />
         <TextInput
           placeholder="Email"
           value={email}
           onChangeText={setEmail}
-          keyboardType="email-address"
+          className="flex-1 p-4"
           autoCapitalize="none"
-          className="border border-gray-300 p-4 rounded-lg mb-4 bg-white"
         />
+      </View>
+
+      {/* Password */}
+      <View className="flex-row items-center border border-black rounded-lg px-3">
+        <Ionicons name="lock-closed-outline" size={20} color="black" />
         <TextInput
           placeholder="Password"
           value={password}
           onChangeText={setPassword}
           secureTextEntry
-          className="border border-gray-300 p-4 rounded-lg bg-white"
+          className="flex-1 p-4"
         />
-        <TouchableOpacity
-          className="bg-blue-600 mt-6 p-4 rounded-lg"
-          onPress={handlePass}
-        >
-          <Text className="text-white font-bold text-center text-lg">Login</Text>
-        </TouchableOpacity>
       </View>
 
-      <Text className="text-gray-400 mb-4">or</Text>
-
-      {/* Google Login */}
+      {/* Login Button */}
       <TouchableOpacity
-        className="bg-red-500 flex-row items-center justify-center p-4 rounded-lg w-full"
-        onPress={handleLogin}
+        className="bg-black mt-6 p-4 rounded-lg flex-row justify-center items-center"
+        onPress={handleEmailLogin}
       >
-        <Image
-          source={{
-            uri: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png",
-          }}
-          style={{ width: 24, height: 24, marginRight: 10 }}
-        />
-        <Text className="text-white font-bold text-lg">Sign in with Google</Text>
+        <Ionicons name="log-in-outline" size={20} color="white" />
+        <Text className="text-white font-bold ml-2 text-lg">Login</Text>
       </TouchableOpacity>
+
+      <Text className="text-gray-400 text-center my-4">OR</Text>
+
+      {/* Google */}
+{/* Google */}
+<TouchableOpacity
+  className="border border-black p-4 rounded-lg flex-row justify-center items-center"
+  onPress={handleGoogle}
+>
+  <FontAwesome name="google" size={20} color="black" style={{ marginRight: 10 }} />
+
+  <Text className="text-black font-semibold text-base">
+    Sign in with Google
+  </Text>
+</TouchableOpacity>
+
+      {/* Go Register */}
+      <TouchableOpacity onPress={() => router.push("/register")}>
+        <Text className="text-center mt-6 text-black">
+          Don't have an account? <Text className="font-bold">Register</Text>
+        </Text>
+      </TouchableOpacity>
+
     </View>
   );
 };
