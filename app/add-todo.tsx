@@ -62,12 +62,11 @@ export default function AddTodo() {
 
   return (
     <SafeAreaView className="flex-1 bg-gray-100">
-      
+
       {/* HEADER */}
       <View className="flex-row justify-between items-center px-4 py-3 bg-white">
-
+        
         <Text className="font-bold text-2xl">Todo List</Text>
-
         <TouchableOpacity onPress={() => setOpenMenu(!openMenu)}>
           <Image
             source={{
@@ -76,7 +75,6 @@ export default function AddTodo() {
             className="w-10 h-10 bg-blue-400 rounded-full"
           />
         </TouchableOpacity>
-
       </View>
 
       {/* PROFILE DROPDOWN */}
