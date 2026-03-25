@@ -6,31 +6,36 @@ export default function TodoCard({ item }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTitle, setEditedTitle] = useState(item.title);
 
-  const handleRemove = (id) => {
-    Alert.alert("Delete Task", "Are you sure you want to delete this task?", [
-      { text: "Cancel", style: "cancel" },
-      {
-        text: "Delete",
-        style: "destructive",
-        onPress: async () => {
-          try {
-            const res = await fetch(
-              `https://task-management-server-one-gamma.vercel.app/tasks/${id}`,
-              { method: "DELETE" }
-            );
+const handleRemove = (id) => {
+  Alert.alert("Delete Task", "Are you sure?", [
+    { text: "Cancel", style: "cancel" },
+    {
+      text: "Delete",
+      style: "destructive",
+      onPress: async () => {
+        try {
+          const res = await fetch(
+            `https://task-management-server-one-gamma.vercel.app/tasks/${id}`,
+            { method: "DELETE" }
+          );
 
-            const data = await res.json();
+          if (!res.ok) throw new Error("Delete failed");
 
-            if (data.deletedCount > 0) {
-              Alert.alert("Success", "Task Deleted Successfully");
-            }
-          } catch (error) {
-            Alert.alert("Error", "Something went wrong");
+          const data = await res.json();
+          console.log(data);
+
+          if (data.deletedCount > 0) {
+            Alert.alert("Success", "Deleted");
+            
           }
-        },
+        } catch (error) {
+          console.log(error);
+          Alert.alert("Error", "Something went wrong");
+        }
       },
-    ]);
-  };
+    },
+  ]);
+};
 
 const handleUpdate = async () => {
   try {
