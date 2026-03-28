@@ -41,14 +41,14 @@ export default function Todo() {
   const fetchData =  data && data.filter((d) => d.email == user.email);
 
   return (
-    <View>
+    <View className="flex h-full">
       {/* TODO LIST */}
-      <View className="flex-1">
+      <View className="flex-1 h-full">
         <TodoItem data={fetchData} />
       </View>
 
       {/* ADD TODO INPUT */}
-      <View className="flex-row items-center bg-white p-3 border-t border-gray-300">
+      <View className="flex-row  items-center bg-white p-3 border-t border-gray-300">
         <TextInput
           placeholder="Add Your Todo"
           value={title}
