@@ -28,6 +28,7 @@ const Login = () => {
     }
   };
 
+  
   const handleGoogle = async () => {
     try {
       await googleSignIn();
@@ -47,7 +48,6 @@ const Login = () => {
 
   return (
     <View className="flex-1 justify-center bg-white px-6">
-
       <Text className="text-4xl font-bold text-black mb-10 text-center">
         Sign In - Native ToDo
       </Text>
@@ -76,6 +76,13 @@ const Login = () => {
         />
       </View>
 
+      <View>
+        <TextInput 
+        placeholder="name"
+        className="p-4"
+        />
+      </View>
+
       {/* Login Button */}
       <TouchableOpacity
         className="bg-black mt-6 p-4 rounded-lg flex-row justify-center items-center"
@@ -85,20 +92,27 @@ const Login = () => {
         <Text className="text-white font-bold ml-2 text-lg">Login</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity className="bg-red-600 p-4 rounded-md mt-2">
+        <Text>Forgot Password?</Text>
+      </TouchableOpacity>
       <Text className="text-gray-400 text-center my-4">OR</Text>
 
       {/* Google */}
-{/* Google */}
-<TouchableOpacity
-  className="border border-black p-4 rounded-lg flex-row justify-center items-center"
-  onPress={handleGoogle}
->
-  <FontAwesome name="google" size={20} color="black" style={{ marginRight: 10 }} />
+      <TouchableOpacity
+        className="border border-black p-4 rounded-lg flex-row justify-center items-center"
+        onPress={handleGoogle}
+      >
+        <FontAwesome
+          name="google"
+          size={20}
+          color="black"
+          style={{ marginRight: 10 }}
+        />
 
-  <Text className="text-black font-semibold text-base">
-    Sign in with Google
-  </Text>
-</TouchableOpacity>
+        <Text className="text-black font-semibold text-base">
+          Sign in with Google
+        </Text>
+      </TouchableOpacity>
 
       {/* Go Register */}
       <TouchableOpacity onPress={() => router.push("/register")}>
@@ -106,7 +120,6 @@ const Login = () => {
           Don't have an account? <Text className="font-bold">Register</Text>
         </Text>
       </TouchableOpacity>
-
     </View>
   );
 };

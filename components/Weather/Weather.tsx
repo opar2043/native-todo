@@ -5,7 +5,7 @@ import { Ionicons } from "@expo/vector-icons";
 export default function Weather() {
   const [weather, setWeather] = useState(null);
 
-  const API_KEY = "9aabe9b0afebdfdf7304773b095539b0";
+  const API_KEY = "9aabe9b0afebdfdf7304773b095539b0"
 
   useEffect(() => {
     fetch(
@@ -61,7 +61,6 @@ export default function Weather() {
         <Text className="text-5xl font-bold text-black mt-3">
           {Math.round(weather.main.temp)}°
         </Text>
-
         <Text className="text-gray-500 mt-1">
           Feels like {Math.round(weather.main.feels_like)}°
         </Text>
