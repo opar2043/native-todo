@@ -1,50 +1,37 @@
-# Welcome to your Expo app - Native ToDo 👋
+# 📱 NATIVE TODO
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+🚀 **NATIVE TODO** is my first mobile application built using React Native.  
+It’s designed as a **daily utility app** that combines multiple useful tools in one place.i want to build a usefull app for the people and i will add more and more features in future. Hope it will gonna be a good project in a long run.
 
-## Get started
+---
 
-1. Install dependencies
+## ✨ Features
 
-   ```bash
-   npm install
-   ```
+- ✅ Todo List (Add, update, delete tasks)
+- 🔐 Authentication (Login & Logout with Firebase)
+- 🧮 Calculator
+- ⚖️ BMI Calculator
+- 🕌 Namaz (Prayer) Timeline based on user location
+- And So Many things will be added in future
 
-2. Start the app
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🛠️ Tech Stack
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- **React Native**
+- **TypeScript**
+- **Firebase (Authentication & Database)**
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 📸 Screenshots
 
-When you're ready, run:
+> Add your app screenshots here
+<img width="336" height="721" alt="Screenshot 2026-04-09 at 5 15 11 PM" src="https://github.com/user-attachments/assets/6f18034d-ef49-4b4d-ab03-08ec6eef8b24" />
+<img width="336" height="721" alt="Screenshot 2026-04-09 at 5 16 25 PM" src="https://github.com/user-attachments/assets/ea442c41-8d58-444a-859a-982076fb65bd" />
+<img width="336" height="721" alt="Screenshot 2026-04-09 at 5 19 14 PM" src="https://github.com/user-attachments/assets/e9a3912c-e68c-431b-9f73-327e9bda3b3c" />
+<img width="336" height="721" alt="Screenshot 2026-04-09 at 5 16 02 PM" src="https://github.com/user-attachments/assets/a01b393b-fb5a-459d-85ed-1c95353c72cb" />
+<img width="336" height="721" alt="Screenshot 2026-04-09 at 5 15 30 PM" src="https://github.com/user-attachments/assets/e9639f13-aa46-4329-8bba-0c767b6c19f6" />
 
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+<img width="336" height="721" alt="Screenshot 2026-04-09 at 5 20 16 PM" src="https://github.com/user-attachments/assets/cc980855-3370-4f39-acbb-89f9998f7fc7" />
