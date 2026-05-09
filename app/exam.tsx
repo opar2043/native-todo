@@ -30,7 +30,7 @@ export default function exam() {
     
   return (
     <View className='max-w-lg  mx-auto flex gap-4'>
-        <h2 className='font-bold text-xl mt-3'>Login Form</h2>
+        <Text className='font-bold text-xl mt-3'>Login Form</Text>
         {/* start */}
       <View>
         <TextInput 

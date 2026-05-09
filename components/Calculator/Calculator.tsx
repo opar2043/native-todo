@@ -30,11 +30,20 @@ export default function Calculator() {
   };
 
   return (
-    <View className="flex-1 justify-center px-5 bg-gray-100">
+    <View className="flex-1 bg-white px-6 justify-center">
       
+      {/* Executive Header */}
+      <View className="mb-10 items-center">
+        <Text className="text-indigo-600 font-extrabold uppercase tracking-[6px] text-[10px]">Accounting Interface</Text>
+        <Text className="text-2xl font-bold text-slate-900 mt-1">Standard Calculator</Text>
+      </View>
+
       {/* Display */}
-      <View className="bg-white p-8 rounded-xl my-5 shadow">
-        <Text className="text-right text-3xl text-gray-800">
+      <View className="bg-slate-50 border border-slate-100 p-10 rounded-md mb-8 shadow-inner relative">
+        <View className="absolute top-3 right-4">
+            <Text className="text-slate-300 font-extrabold text-[8px] uppercase tracking-widest">Logic Processor</Text>
+        </View>
+        <Text className="text-right text-6xl font-light text-slate-900 tracking-tighter" numberOfLines={1} adjustsFontSizeToFit>
           {input || "0"}
         </Text>
       </View>
@@ -45,17 +54,21 @@ export default function Calculator() {
           <TouchableOpacity
             key={index}
             onPress={() => handlePress(btn)}
-            className={`w-[22%] py-5 mb-3 rounded-xl items-center shadow 
-              ${["/", "*", "-", "+", "%"].includes(btn) ? "bg-orange-100" : ""}
-              ${btn === "C" ? "bg-red-400" : ""}
-              ${btn === "=" ? "bg-green-400" : ""}
-              ${btn === "⌫" ? "bg-yellow-300" : ""}
-              ${!isNaN(btn) || btn === "." || btn === "00" ? "bg-white" : ""}
+            className={`w-[22%] py-6 mb-4 rounded-md items-center border shadow-sm
+              ${["/", "*", "-", "+", "=", "%"].includes(btn) ? "bg-indigo-600 border-indigo-600 shadow-md shadow-indigo-600/20" : "bg-white border-slate-100"}
+              ${btn === "C" ? "bg-rose-50 border-rose-100" : ""}
+              ${btn === "⌫" ? "bg-slate-50 border-slate-100" : ""}
             `}
           >
-            <Text className="text-xl text-gray-800">{btn}</Text>
+            <Text className={`text-xl font-bold ${["/", "*", "-", "+", "=", "%"].includes(btn) ? "text-white" : btn === "C" ? "text-rose-600" : "text-slate-700"}`}>
+              {btn}
+            </Text>
           </TouchableOpacity>
         ))}
+      </View>
+      
+      <View className="mt-10 border-t border-slate-50 pt-6">
+        <Text className="text-slate-300 font-extrabold text-[8px] uppercase tracking-[8px] text-center">Executive Systems Pro</Text>
       </View>
     </View>
   );

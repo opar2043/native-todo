@@ -9,6 +9,7 @@ import {
 import React, { useState } from "react";
 import { useRouter } from "expo-router";
 import useAuth from "../Hooks/useAuth";
+import { Ionicons } from "@expo/vector-icons";
 
 export default function Header() {
   const [openMenu, setOpenMenu] = useState(false);
@@ -32,23 +33,30 @@ export default function Header() {
   return (
     <View style={{ position: "relative", zIndex: 100 }}>
       {/* Header Bar */}
-      <View className="flex-row justify-between items-center px-5 py-4 bg-white border-b border-gray-100">
-        <Text className="font-bold text-xl tracking-wide text-gray-800">
-          Native ToDo
-        </Text>
+      <View className="flex-row justify-between items-center px-6 py-4 bg-white border-b border-slate-100 shadow-sm">
+        <View className="flex-row items-center">
+            <View className="bg-indigo-600 w-9 h-9 rounded-md items-center justify-center mr-3 shadow-sm shadow-indigo-600/20">
+                <Ionicons name="layers" size={18} color="white" />
+            </View>
+            <Text className="font-bold text-xl tracking-tighter text-slate-900">
+            NATIVE<Text className="text-indigo-600">PRO</Text>
+            </Text>
+        </View>
 
         <TouchableOpacity
           onPress={() => setOpenMenu((prev) => !prev)}
           className="active:opacity-70"
         >
-          <Image
-            source={{
-              uri:
-                user?.photoURL ||
-                "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png",
-            }}
-            className="w-11 h-11 rounded-full border-2 border-gray-200"
-          />
+          <View className="bg-slate-50 p-0.5 rounded-md border border-slate-200">
+            <Image
+                source={{
+                uri:
+                    user?.photoURL ||
+                    "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png",
+                }}
+                className="w-10 h-10 rounded-md"
+            />
+          </View>
         </TouchableOpacity>
       </View>
 
@@ -66,48 +74,52 @@ export default function Header() {
         />
       )}
 
-      {/* Dropdown Menu */}
+      {/* Executive Dropdown */}
       {openMenu && (
         <View
           style={{
             position: "absolute",
             top: 70,
             right: 16,
-            width: 240,
-            backgroundColor: "white",
-            borderRadius: 16,
-            padding: 16,
-            shadowColor: "#000",
-            shadowOpacity: 0.1,
-            shadowRadius: 12,
-            shadowOffset: { width: 0, height: 6 },
-            elevation: 10,
+            width: 260,
+            backgroundColor: "#FFFFFF",
+            borderWidth: 1,
+            borderColor: "#F1F5F9",
+            borderRadius: 8,
+            padding: 24,
+            shadowColor: "#64748B",
+            shadowOpacity: 0.15,
+            shadowRadius: 20,
+            shadowOffset: { width: 0, height: 10 },
+            elevation: 15,
           }}
         >
-          {/* User Info */}
-          <View className="items-center mb-4">
-            <Text className="text-base font-semibold text-gray-800">
-              {user?.displayName || "User"}
+          {/* Profile Section */}
+          <View className="items-center mb-8">
+            <Text className="text-slate-900 font-bold text-lg tracking-tight">
+              {user?.displayName || "Access User"}
             </Text>
-            <Text className="text-sm text-gray-500">{user?.email}</Text>
+            <Text className="text-slate-400 font-bold text-[9px] uppercase tracking-widest mt-1">{user?.email}</Text>
           </View>
 
-          {/* Buttons */}
+          {/* Navigation Options */}
           <TouchableOpacity
             onPress={handlebackHome}
-            className="bg-gray-100 py-2.5 rounded-md mb-3"
+            className="bg-slate-50 border border-slate-100 py-3 rounded-md mb-3 flex-row justify-center items-center"
           >
-            <Text className="text-center font-medium text-gray-700">
-              ⬅ Back to Home
+            <Ionicons name="home-outline" size={16} color="#4F46E5" style={{ marginRight: 10 }} />
+            <Text className="font-extrabold text-[10px] text-slate-600 uppercase tracking-widest">
+              Executive Home
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
             onPress={handleUserLogout}
-            className="bg-red-500 py-2.5 rounded-md"
+            className="bg-rose-50 border border-rose-100 py-3 rounded-md flex-row justify-center items-center"
           >
-            <Text className="text-center font-semibold text-white">
-              Logout
+            <Ionicons name="log-out-outline" size={16} color="#E11D48" style={{ marginRight: 10 }} />
+            <Text className="font-extrabold text-[10px] text-rose-600 uppercase tracking-widest">
+              Terminate Session
             </Text>
           </TouchableOpacity>
         </View>

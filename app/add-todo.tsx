@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import {
   Alert,
   Image,
+  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -32,153 +33,156 @@ export default function AddTodo() {
 
 
 
-return (
-  <SafeAreaView className="flex-1 bg-gray-100">
-
-    {/* MAIN CONTENT */}
-    <View className="flex-1 px-4 pt-6 pb-24">
-
-      {/* HEADER */}
-      <View className="mb-5">
-        <Text className="text-gray-500 text-sm">Welcome back</Text>
-        <Text className="text-2xl font-bold">
-          {user?.displayName || "User"}
-        </Text>
-      </View>
-
-      {/* WHITE CARD (MAIN UI) */}
-      <View className="bg-white rounded-2xl p-5 shadow-sm">
-
-        {/* USER INFO */}
-        <View className="flex-row items-center mb-5">
-          <Image
-            source={{
-              uri:
-                user?.photoURL ||
-                "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png",
-            }}
-            className="w-14 h-14 rounded-full mr-3"
-          />
+  return (
+    <SafeAreaView className="flex-1 bg-slate-50">
+      {/* MAIN CONTENT */}
+      <ScrollView className="flex-1 px-6 pt-6">
+        
+        {/* EXECUTIVE HEADER */}
+        <View className="flex-row justify-between items-center mb-8">
           <View>
-            <Text className="font-bold text-lg">
-              {user?.displayName || "User"}
+            <Text className="text-indigo-600 text-xs font-extrabold uppercase tracking-widest">System Dashboard</Text>
+            <Text className="text-3xl font-bold text-slate-900">
+              Good day, {user?.displayName?.split(' ')[0] || "User"}
             </Text>
-            <Text className="text-gray-500 text-sm">
-              {user?.email}
-            </Text>
+          </View>
+          <TouchableOpacity 
+            onPress={() => setOpenMenu(!openMenu)}
+            className="w-12 h-12 rounded-md bg-white border border-slate-200 items-center justify-center shadow-sm"
+          >
+            <Ionicons name="apps" size={24} color="#4F46E5" />
+          </TouchableOpacity>
+        </View>
+
+        {/* ANALYTICS SUMMARY */}
+        <View className="bg-white border border-slate-100 rounded-md p-6 mb-8 shadow-sm">
+          <View className="flex-row items-center mb-6">
+            <View className="w-16 h-16 rounded-md bg-slate-100 items-center justify-center mr-4 border border-slate-200">
+                <Image
+                source={{
+                    uri: user?.photoURL || "https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png",
+                }}
+                className="w-14 h-14 rounded-md"
+                />
+            </View>
+            <View>
+              <Text className="font-bold text-xl text-slate-900">{user?.displayName || "Member"}</Text>
+              <Text className="text-slate-400 font-medium text-sm">{user?.email}</Text>
+            </View>
+          </View>
+
+          <View className="flex-row justify-between border-t border-slate-50 pt-6">
+            <View className="items-center w-[48%]">
+              <Text className="text-2xl font-bold text-indigo-600">{data.length}</Text>
+              <Text className="text-slate-400 font-bold text-[10px] uppercase tracking-widest">Total Projects</Text>
+            </View>
+            <View className="items-center w-[48%] border-l border-slate-100">
+              <Text className="text-2xl font-bold text-emerald-600">{data.filter(t => t.isDone).length}</Text>
+              <Text className="text-slate-400 font-bold text-[10px] uppercase tracking-widest">Successful</Text>
+            </View>
           </View>
         </View>
 
-        {/* STATS */}
-        <View className="flex-row justify-between mb-6">
-          <View className="bg-gray-100 p-4 rounded-xl w-[48%]">
-            <Text className="text-lg font-bold">{data.length}</Text>
-            <Text className="text-gray-500">Total Tasks</Text>
-          </View>
+        {/* EXECUTIVE SUITE */}
+        <Text className="text-slate-900 font-bold text-lg mb-4">Executive Tools</Text>
+        
+        <View className="flex-row flex-wrap justify-between">
+          <ToolItem 
+            icon="cloud-outline" 
+            label="Weather" 
+            onPress={() => router.push("/weather")} 
+            bgColor="bg-blue-50"
+            iconColor="#3B82F6"
+          />
+          <ToolItem 
+            icon="pulse-outline" 
+            label="Health Scan" 
+            onPress={() => router.push("/bmi")} 
+            bgColor="bg-rose-50"
+            iconColor="#E11D48"
+          />
+          <ToolItem 
+            icon="calendar-outline" 
+            label="Age Analysis" 
+            onPress={() => router.push("/age-calculator")} 
+            bgColor="bg-indigo-50"
+            iconColor="#4F46E5"
+          />
+          <ToolItem 
+            icon="leaf-outline" 
+            label="Islamic Hub" 
+            onPress={() => router.push("/islamic-hub")} 
+            bgColor="bg-emerald-50"
+            iconColor="#10B981"
+          />
+          <ToolItem 
+            icon="calculator-outline" 
+            label="Accounting" 
+            onPress={() => router.push("/calculator")} 
+            bgColor="bg-slate-50"
+            iconColor="#475569"
+          />
+          <ToolItem 
+            icon="list-outline" 
+            label="Task Board" 
+            onPress={() => router.push("/todo")} 
+            bgColor="bg-neutral-50"
+            iconColor="#171717"
+          />
+        </View>
 
-          <View className="bg-gray-100 p-4 rounded-xl w-[48%]">
-            <Text className="text-lg font-bold">
-              {data.filter(t => t.isDone).length}
+        <View className="bg-indigo-600 rounded-md p-6 mt-6 mb-24 flex-row items-center">
+          <View className="flex-1 pr-4">
+            <Text className="text-white/80 font-bold mb-1 uppercase text-[10px] tracking-widest">Pro Tip</Text>
+            <Text className="text-white text-lg font-bold">
+              Organize your week ahead of time for peak efficiency.
             </Text>
-            <Text className="text-gray-500">Completed</Text>
           </View>
+          <Ionicons name="rocket-outline" size={32} color="white" />
         </View>
 
-        {/* QUICK TOOLS */}
-        <Text className="font-semibold mb-3">Quick Tools</Text>
+      </ScrollView>
 
-        <View className="flex-row justify-between">
-
-          <TouchableOpacity
-            className="items-center"
-            onPress={() => router.push("/weather")}
-          >
-            <View className="bg-gray-100 p-3 rounded-full mb-1">
-              <Ionicons name="cloud" size={22} color="black" />
-            </View>
-            <Text className="text-xs">Weather</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            className="items-center"
-            onPress={() => router.push("/bmi")}
-          >
-            <View className="bg-gray-100 p-3 rounded-full mb-1">
-              <Ionicons name="fitness" size={22} color="black" />
-            </View>
-            <Text className="text-xs">BMI</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            className="items-center"
-            onPress={() => router.push("/calculator")}
-          >
-            <View className="bg-gray-100 p-3 rounded-full mb-1">
-              <Ionicons name="calculator" size={22} color="black" />
-            </View>
-            <Text className="text-xs">Calc</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            className="items-center"
-            onPress={() => router.push("/todo")}
-          >
-            <View className="bg-gray-100 p-3 rounded-full mb-1">
-              <Ionicons name="checkbox" size={22} color="black" />
-            </View>
-            <Text className="text-xs">Todo</Text>
-          </TouchableOpacity>
-
-        </View>
+      {/* MINIMALIST NAV DOCK */}
+      <View className="absolute bottom-6 left-6 right-6 h-16 bg-white border border-slate-100 rounded-md flex-row justify-around items-center shadow-lg">
+        <NavIcon icon="home" active onPress={() => router.replace("/")} />
+        <NavIcon icon="list" onPress={() => router.push("/todo")} />
+        <NavIcon icon="add" large />
+        <NavIcon icon="bar-chart" onPress={() => router.push("/bmi")} />
+        <NavIcon icon="log-out" onPress={() => logOut()} />
       </View>
 
-      {/* EXTRA SECTION (optional nice touch) */}
-      <View className="bg-white rounded-2xl p-5 mt-5">
-        <Text className="font-semibold mb-2">Daily Tip</Text>
-        <Text className="text-gray-500 text-sm">
-          Stay consistent. Small daily progress leads to big results 🚀
-        </Text>
-      </View>
-
-    </View>
-
-    {/* BOTTOM NAVIGATION */}
-    <View
-      style={{
-        position: "absolute",
-        bottom: 0,
-        left: 0,
-        right: 0,
-        flexDirection: "row",
-        justifyContent: "space-around",
-        alignItems: "center",
-        backgroundColor: "white",
-        paddingVertical: 12,
-        borderTopWidth: 1,
-        borderColor: "#e5e7eb",
-      }}
-    >
-      <TouchableOpacity onPress={() => router.replace("/")}>
-        <Ionicons name="home" size={26} color="#111" />
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => router.push("/todo")}>
-        <Ionicons name="checkbox" size={26} color="#111" />
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => router.push("/weather")}>
-        <Ionicons name="cloud" size={26} color="#111" />
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => router.push("/bmi")}>
-        <Ionicons name="fitness" size={26} color="#111" />
-      </TouchableOpacity>
-
-      <TouchableOpacity onPress={() => router.push("/calculator")}>
-        <Ionicons name="calculator" size={26} color="#111" />
-      </TouchableOpacity>
-    </View>
-
-  </SafeAreaView>
-);
+    </SafeAreaView>
+  );
 }
+
+function ToolItem({ icon, label, onPress, bgColor, iconColor }) {
+  return (
+    <TouchableOpacity
+      onPress={onPress}
+      className="w-[48%] bg-white border border-slate-100 p-4 rounded-md mb-4 flex-row items-center shadow-sm"
+    >
+      <View className={`${bgColor} w-10 h-10 rounded-md items-center justify-center mr-3`}>
+        <Ionicons name={icon} size={20} color={iconColor} />
+      </View>
+      <Text className="text-slate-700 font-bold text-xs">{label}</Text>
+    </TouchableOpacity>
+  );
+}
+
+function NavIcon({ icon, active, large, onPress }) {
+  if (large) {
+    return (
+      <TouchableOpacity className="bg-indigo-600 w-12 h-12 rounded-md items-center justify-center shadow-md shadow-indigo-500/40">
+        <Ionicons name="add" size={28} color="white" />
+      </TouchableOpacity>
+    );
+  }
+  return (
+    <TouchableOpacity onPress={onPress} className="items-center justify-center">
+      <Ionicons name={icon} size={22} color={active ? "#4F46E5" : "#94A3B8"} />
+    </TouchableOpacity>
+  );
+}
+
+

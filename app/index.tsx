@@ -4,7 +4,7 @@ import { Link } from "expo-router";
 
 export default function Index() {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
       <Login />
     </SafeAreaView>
   );

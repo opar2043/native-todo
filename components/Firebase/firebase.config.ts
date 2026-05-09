@@ -1,6 +1,10 @@
 // firebase.config.js
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+// @ts-ignore - Firebase Auth TS definitions mismatch in React Native, but this is required for runtime persistence
+import { initializeAuth, getReactNativePersistence } from "firebase/auth";
+import ReactNativeAsyncStorage from "@react-native-async-storage/async-storage";
+
+import { Platform } from "react-native";
 
 const firebaseConfig = {
   apiKey: "AIzaSyDtqiRnwC4q6ujXLrHpzzBcofCAs9qeUBY",
@@ -13,6 +17,16 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+
+let auth;
+if (Platform.OS === "web") {
+  // Web uses the default native browser persistence (IndexedDB/Local Storage)
+  auth = initializeAuth(app);
+} else {
+  // Mobile uses AsyncStorage for persistence
+  auth = initializeAuth(app, {
+    persistence: getReactNativePersistence(ReactNativeAsyncStorage),
+  });
+}
 
 export default auth;

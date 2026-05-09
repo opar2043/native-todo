@@ -1,11 +1,11 @@
 import { View, TouchableOpacity, Text } from 'react-native'
 import React from 'react'
-import Weather from '../components/Weather/Weather'
+import AgeCalculator from '../components/Calculator/AgeCalculator'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { Ionicons } from '@expo/vector-icons'
 import { useRouter } from 'expo-router'
 
-export default function WeatherScreen() {
+export default function AgeCalculatorScreen() {
   const router = useRouter();
 
   return (
@@ -17,9 +17,9 @@ export default function WeatherScreen() {
         >
           <Ionicons name="chevron-back" size={20} color="#1E293B" />
         </TouchableOpacity>
-        <Text className="ml-4 text-slate-900 font-bold text-lg">Atmospheric Report</Text>
+        <Text className="ml-4 text-slate-900 font-bold text-lg">Age Audit</Text>
       </View>
-      <Weather />
+      <AgeCalculator />
     </SafeAreaView>
   )
 }

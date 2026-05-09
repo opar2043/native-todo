@@ -22,61 +22,75 @@ const handleEmailRegister = async () => {
 };
 
   return (
-    <View className="flex-1 justify-center bg-white px-6">
-
-      <Text className="text-4xl font-bold text-center mb-10">
-        Register - Native ToDo
-      </Text>
-
-      {/* Email */}
-      <View className="flex-row items-center border border-black rounded-lg mb-4 px-3">
-        <Ionicons name="mail-outline" size={20} color="black" />
-        <TextInput
-          placeholder="Email"
-          value={email}
-          onChangeText={setEmail}
-          className="flex-1 p-4"
-          autoCapitalize="none"
-        />
+    <View className="flex-1 justify-center bg-white px-8">
+      
+      <View className="items-center mb-12">
+        <View className="bg-indigo-600 w-20 h-20 rounded-md items-center justify-center shadow-lg shadow-indigo-600/20 mb-6">
+            <Ionicons name="person-add" size={40} color="white" />
+        </View>
+        <Text className="text-4xl font-bold text-slate-900 tracking-tighter">JOIN<Text className="text-indigo-600">PRO</Text></Text>
+        <Text className="text-slate-400 font-bold uppercase tracking-[4px] text-[10px] mt-2">Initialize Your Account</Text>
       </View>
 
-      {/* Email */}
-      <View className="flex-row items-center border border-black rounded-lg mb-4 px-3">
-        <Ionicons name="mail-outline" size={20} color="black" />
-        <TextInput
-          placeholder="Name"
-          value={name}
-          onChangeText={setName}
-          className="flex-1 p-4"
-          autoCapitalize="none"
-        />
+      {/* Name Input */}
+      <View className="bg-slate-50 border border-slate-100 rounded-md mb-4 px-4 py-2">
+        <Text className="text-indigo-600 font-extrabold text-[9px] uppercase tracking-widest mb-1">Full Identity</Text>
+        <View className="flex-row items-center">
+            <Ionicons name="person-outline" size={18} color="#94A3B8" />
+            <TextInput
+            placeholder="John Doe"
+            placeholderTextColor="#94A3B8"
+            value={name}
+            onChangeText={setName}
+            className="flex-1 p-2 text-slate-900 font-bold"
+            />
+        </View>
       </View>
 
-      {/* Password */}
-      <View className="flex-row items-center border border-black rounded-lg px-3">
-        <Ionicons name="lock-closed-outline" size={20} color="black" />
-        <TextInput
-          placeholder="Password"
-          value={password}
-          onChangeText={setPassword}
-          secureTextEntry
-          className="flex-1 p-4"
-        />
+      {/* Email Input */}
+      <View className="bg-slate-50 border border-slate-100 rounded-md mb-4 px-4 py-2">
+        <Text className="text-indigo-600 font-extrabold text-[9px] uppercase tracking-widest mb-1">Access Email</Text>
+        <View className="flex-row items-center">
+            <Ionicons name="mail-outline" size={18} color="#94A3B8" />
+            <TextInput
+            placeholder="identity@domain.pro"
+            placeholderTextColor="#94A3B8"
+            value={email}
+            onChangeText={setEmail}
+            className="flex-1 p-2 text-slate-900 font-bold"
+            autoCapitalize="none"
+            />
+        </View>
+      </View>
+
+      {/* Password Input */}
+      <View className="bg-slate-50 border border-slate-100 rounded-md mb-8 px-4 py-2">
+        <Text className="text-indigo-600 font-extrabold text-[9px] uppercase tracking-widest mb-1">Security Key</Text>
+        <View className="flex-row items-center">
+            <Ionicons name="lock-closed-outline" size={18} color="#94A3B8" />
+            <TextInput
+            placeholder="••••••••"
+            placeholderTextColor="#94A3B8"
+            value={password}
+            onChangeText={setPassword}
+            secureTextEntry
+            className="flex-1 p-2 text-slate-900 font-bold"
+            />
+        </View>
       </View>
 
       {/* Register Button */}
       <TouchableOpacity
-        className="bg-black mt-6 p-4 rounded-lg flex-row justify-center items-center"
+        className="bg-indigo-600 p-5 rounded-md flex-row justify-center items-center shadow-md shadow-indigo-600/20"
         onPress={handleEmailRegister}
       >
-        <Ionicons name="person-add-outline" size={20} color="white" />
-        <Text className="text-white font-bold ml-2 text-lg">Register </Text>
+        <Text className="text-white font-bold text-lg uppercase tracking-widest">Create Profile</Text>
       </TouchableOpacity>
 
       {/* Go Login */}
-      <TouchableOpacity onPress={() => router.push("/")}>
-        <Text className="text-center mt-6 text-black">
-          Already have an account? <Text className="font-bold">Login</Text>
+      <TouchableOpacity onPress={() => router.push("/")} className="mt-12">
+        <Text className="text-center text-slate-400 font-bold uppercase text-[10px] tracking-widest">
+          Already Registered? <Text className="text-indigo-600 font-extrabold">Authorize Session</Text>
         </Text>
       </TouchableOpacity>
 
